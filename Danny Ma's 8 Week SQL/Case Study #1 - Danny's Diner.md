@@ -148,7 +148,12 @@ group by s.customer_id;
   
 **10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?**
 ````sql
-select s.customer_id, sum(m.price*20) as points
+select 
+	s.customer_id, 
+    SUM(CASE 
+            WHEN s.order_date <= me.join_date + INTERVAL 7 DAY THEN m.price * 20 ELSE 
+                CASE WHEN m.product_name NOT IN ('sushi') THEN m.price * 10 ELSE m.price * 20 END 
+	END) AS points
 from sales as s
 INNER JOIN members as me on s.customer_id = me.customer_id and s.order_date >= me.join_date
 INNER JOIN menu as m on s.product_id = m.product_id
@@ -157,6 +162,44 @@ group by s.customer_id
 order by s.customer_id;
 ````
 #### Answer: 
-![image](https://github.com/user-attachments/assets/76088362-5f00-460d-9e72-7a735e69efc0)
+![image](https://github.com/user-attachments/assets/c80313da-d6d0-4847-ba6f-57946050020f)
+
+***
+
+## BONUS QUESTIONS
+
+**Join All The Things**
+
+**Recreate the table with: customer_id, order_date, product_name, price, member (Y/N)**
+
+```sql
+select s.customer_id, s.order_date, m.product_name, m.price,case when s.order_date >= me.join_date THEN 'Y' ELSE 'N' end as member
+from sales as s
+LEFT OUTER JOIN members as me on s.customer_id = me.customer_id 
+INNER JOIN menu as m on s.product_id = m.product_id;
+```
+
+#### Answer:
+![image](https://github.com/user-attachments/assets/6031c183-b23b-4be1-a16b-50f59aaad97d)
 
 
+**Rank All The Things**
+
+**Danny also requires further information about the ```ranking``` of customer products, but he purposely does not need the ranking for non-member purchases so he expects null ```ranking``` values for the records when customers are not yet part of the loyalty program.**
+
+```sql
+WITH MemberFilter AS (
+select s.customer_id, s.order_date, m.product_name, m.price,case when s.order_date >= me.join_date THEN 'Y' ELSE 'N' end as member
+from sales as s
+LEFT OUTER JOIN members as me on s.customer_id = me.customer_id 
+INNER JOIN menu as m on s.product_id = m.product_id)
+
+select customer_id, order_date, product_name, price, 
+case when member = 'N' THEN NULL ELSE rank()over(partition by customer_id, member order by order_date) END as ranking
+from MemberFilter;
+```
+
+#### Answer:
+![image](https://github.com/user-attachments/assets/2338d8e1-81a4-48ef-8dc0-67836c7aa666)
+
+***
