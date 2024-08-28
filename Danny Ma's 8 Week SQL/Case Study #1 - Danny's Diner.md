@@ -195,11 +195,11 @@ LEFT OUTER JOIN members as me on s.customer_id = me.customer_id
 INNER JOIN menu as m on s.product_id = m.product_id)
 
 select customer_id, order_date, product_name, price, 
-case when member = 'N' THEN NULL ELSE rank()over(partition by customer_id, member order by order_date) END as ranking
+case when member = NULL THEN NULL ELSE rank()over(partition by customer_id, member order by order_date) END as ranking
 from MemberFilter;
 ```
 
 #### Answer:
-![image](https://github.com/user-attachments/assets/2338d8e1-81a4-48ef-8dc0-67836c7aa666)
+![image](https://github.com/user-attachments/assets/f7329c37-5876-4e22-80eb-27592a11cd30)
 
 ***
