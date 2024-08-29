@@ -38,7 +38,7 @@ group by s.customer_id;
 
 **2. How many days has each customer visited the restaurant?**
 ````sql
-  select s.customer_id, count(distinct order_date)
+select s.customer_id, count(distinct order_date)
 from sales as s
 group by s.customer_id;
 ````
