@@ -145,20 +145,22 @@ order by c.customer_id;
 
 **6. What was the maximum number of pizzas delivered in a single order?**
 ````sql
-select c.order_id, count(p.pizza_name) as pizzas_per_order
+WITH ranked_ct_pizzas_delivered as (
+select c.order_id, count(p.pizza_name) as pizzas_delivered, rank()over(order by count(p.pizza_name) desc) as rnk
 from pizza_names as p 
 join customer_order_temp as c 
 on p.pizza_id = c.pizza_id
 join runner_orders_temp as r
 on c.order_id = r.order_id
-group by c.order_id
-order by pizzas_per_order desc
-LIMIT 1;
+group by c.order_id)
+
+select order_id, max(pizzas_delivered)
+from ranked_ct_pizzas_delivered;
 ````
 #### Answer:
 ![image](https://github.com/user-attachments/assets/e51b9675-726a-4f0f-8e2f-41b5eb424dc0)
 
-**7. **
+**7. For each customer, how many delivered pizzas had at least 1 change and how many had no changes?**
 ````sql
 
 ````
