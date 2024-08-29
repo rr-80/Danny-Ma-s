@@ -162,32 +162,61 @@ from ranked_ct_pizzas_delivered;
 
 **7. For each customer, how many delivered pizzas had at least 1 change and how many had no changes?**
 ````sql
-
+select c.customer_id, 
+sum(
+	case
+		when exclusions != '' or extras != '' then 1 else 0 END) as changes,
+sum(
+	case
+		when exclusions = '' and extras = '' then 1 else 0 END) as no_changes        
+from pizza_names as p 
+join customer_order_temp as c 
+on p.pizza_id = c.pizza_id
+join runner_orders_temp as r
+on c.order_id = r.order_id
+where lower(r.cancellation) not LIKE '%cancellation%'
+group by c.customer_id;
 ````
 #### Answer:
+![image](https://github.com/user-attachments/assets/fdde2b33-1454-4b80-98d6-1fca932bf120)
 
-
-**8. **
+**8. How many pizzas were delivered that had both exclusions and extras?**
 ````sql
-
+select  
+sum(
+	case
+		when exclusions != '' and extras != '' then 1 else 0 END) as exclusions_and_extras
+from pizza_names as p 
+join customer_order_temp as c 
+on p.pizza_id = c.pizza_id
+join runner_orders_temp as r
+on c.order_id = r.order_id
+where lower(r.cancellation) not LIKE '%cancellation%'
+;
 ````
 #### Answer:
+![image](https://github.com/user-attachments/assets/65336a63-028d-42ff-92ea-eb1a88156a25)
 
-
-**9. **
+**9. What was the total volume of pizzas ordered for each hour of the day?**
 ````sql
-
+select hour(order_time) as hours, count(*) as total_volume
+FROM customer_order_temp 
+group by hour(order_time)
+order by hours;
 ````
 #### Answer:
+![image](https://github.com/user-attachments/assets/71940689-490b-492a-93c9-cad869b5f4e2)
 
-
-**10. **
+**10. What was the volume of orders for each day of the week?**
 
 ````sql
-
+select dayname(order_time) as days, count(*) as total_volume
+FROM customer_order_temp 
+group by dayname(order_time)
+order by 2 desc;
 ````
 #### Answer:
-
+![image](https://github.com/user-attachments/assets/fa80250d-f2fa-4499-ad76-3d5f984e8779)
 
 ***
 
