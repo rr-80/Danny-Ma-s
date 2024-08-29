@@ -219,6 +219,66 @@ order by 2 desc;
 ![image](https://github.com/user-attachments/assets/fa80250d-f2fa-4499-ad76-3d5f984e8779)
 
 ***
+### 
+
+**1. **
+
+````sql
+
+````
+#### Answer:
+
+
+
+**2. **
+````sql
+
+````
+#### Answer: 
+
+
+
+**3. **
+````sql
+
+````
+#### Answer: 
+
+
+**4. **
+````sql
+
+````
+#### Answer:
+
+
+**5. **
+````sql
+
+````
+#### Answer:
+
+
+**6. **
+````sql
+
+````
+#### Answer:
+
+
+**7. **
+````sql
+
+````
+#### Answer:
+
+
+**8. **
+````sql
+
+````
+#### Answer:
+
 
 ## BONUS QUESTIONS
 
