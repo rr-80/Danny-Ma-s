@@ -1,5 +1,5 @@
-# 🍜 Case Study #:  
-<img src="https://user-images.githubusercontent.com/81607668/127727503-9d9e7a25-93cb-4f95-8bd0-20b87cb4b459.png" alt="Image" width="500" height="520">
+# 🍜 Case Study #2 - Pizza Runner:  
+<img src="(https://user-images.githubusercontent.com/81607668/127727503-9d9e7a25-93cb-4f95-8bd0-20b87cb4b459.png)" alt="Image" width="500" height="520">
 
 ## 📚 Table of Contents
 - [Business Task](#business-task)
@@ -11,7 +11,9 @@ Please note that all the information regarding the case study has been sourced f
 ***
 
 ## Business Task
+Danny is expanding his new Pizza Empire and at the same time, he wants to Uberize it, so Pizza Runner was launched!
 
+Danny started by recruiting “runners” to deliver fresh pizza from Pizza Runner Headquarters (otherwise known as Danny’s house) and also maxed out his credit card to pay freelance developers to build a mobile app to accept orders from customers.
 
 ***
 
