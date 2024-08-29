@@ -1,5 +1,5 @@
 # 🍜 Case Study #2 - Pizza Runner:  
-![image](https://user-images.githubusercontent.com/81607668/127271130-dca9aedd-4ca9-4ed8-b6ec-1e1920dca4a8.png)
+![image](https://user-images.githubusercontent.com/77920592/199072945-1bdf34ab-bc60-49eb-bcf9-0f21fb9dbe5d.png)
 
 ## 📚 Table of Contents
 - [Business Task](#business-task)
@@ -19,7 +19,7 @@ Danny started by recruiting “runners” to deliver fresh pizza from Pizza Runn
 
 ## Entity Relationship Diagram
 
-![image]()
+![image](https://user-images.githubusercontent.com/81607668/127271130-dca9aedd-4ca9-4ed8-b6ec-1e1920dca4a8.png)
 
 ***
 
